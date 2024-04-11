@@ -31,8 +31,8 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <LoadingComponent/>
        <BaseNavigation/>
+       <LoadingComponent/>
 
       </PersistGate>
 

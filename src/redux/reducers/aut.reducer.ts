@@ -21,6 +21,8 @@ const reducer = createSlice({
     initialState : initualState,
     reducers : {
         handleLogin : (state: AuthType, _: PayloadAction<LoginPayload>) => {
+            console.log('login');
+            
             return {
                 ...state,
             }

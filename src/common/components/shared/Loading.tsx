@@ -4,6 +4,7 @@ import {getLoadingState} from '../../../redux/selectors/loading.selector';
 
 export const LoadingComponent: React.FunctionComponent = () => {
   const isLoading = useSelector(getLoadingState);
+  
   if (!isLoading.isLoading) {
     return <View />;
   }

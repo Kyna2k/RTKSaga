@@ -13,6 +13,7 @@ import { getLoadingState } from '../redux/selectors/loading.selector';
 import { LoadingActions } from '../redux/reducers/loading.reducer';
 import { store } from '../redux/store';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import { AuthActions } from '../redux/reducers/aut.reducer';
 
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
@@ -23,7 +24,7 @@ type InPutInfo = {
 
 const LoginScreen: React.FunctionComponent = () => {
   const [inputInfo, setInputInfo] = useState<InPutInfo>({
-    username: '',
+    username: 'huynobi1809@gmail.com',
     password: '',
   });
   const useSelector = useAppSelector(getLoadingState);
@@ -44,13 +45,7 @@ const LoginScreen: React.FunctionComponent = () => {
   })
   const handlerLogin = async () => {
    
-    
-    if(useSelector.isLoading)
-    {
-      useDispatch(LoadingActions.handleOffLoading())
-    }else {
-      useDispatch(LoadingActions.handleShowLoading())
-    }
+   useDispatch(AuthActions.handleLogin({email : inputInfo.username}))
 
   };
 
@@ -59,6 +54,7 @@ const LoginScreen: React.FunctionComponent = () => {
       <View style={style.container}>
         <Text style={style.title}>Username</Text>
         <TextInput
+          value={inputInfo.username}
           clearButtonMode="always"
           style={style.input}
           onChangeText={onChangeUserNameText}

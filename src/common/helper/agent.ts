@@ -3,7 +3,7 @@ import { store } from '../../redux/store';
 
 
 const agentService = axios.create({
-    baseURL : "http://localhost:3000/api",
+    baseURL : "http://192.168.1.202:3000/api",
     headers : {
         'Content-Type' : 'application/json'
     },

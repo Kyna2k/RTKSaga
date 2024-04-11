@@ -17,6 +17,8 @@ const reducer = createSlice({
     initialState: initialState,
     reducers: {
         handleShowLoading : (state : LoadingType) => {
+            console.log('is loading');
+            
             state.isLoading = true;
         },
         handleOffLoading : (state : LoadingType, _ : PayloadAction) => {

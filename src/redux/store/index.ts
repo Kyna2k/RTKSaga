@@ -6,6 +6,8 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import { AutReducer } from '../reducers/aut.reducer';
 import { LoadingReducer } from '../reducers/loading.reducer';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import createSagaMiddleware from '@redux-saga/core';
+import rootSaga from '../sagas';
 const persistConfig : PersistConfig<RootState> = {
     key : 'root',
     storage: EncryptedStorage,
@@ -25,7 +27,7 @@ const rootReducers = combineReducers({
     loading : LoadingReducer
 });
 
-
+const sagaMiddleware = createSagaMiddleware();
 type RootState = ReturnType<typeof rootReducers>;
 console.log();
 
@@ -36,7 +38,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
           serializableCheck: false,
-        }).concat(),
+        }).concat(sagaMiddleware),
   });
-
+sagaMiddleware.run(rootSaga)
 export const persistor = persistStore(store);

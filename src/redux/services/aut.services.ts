@@ -3,7 +3,7 @@ import { LoginPayload } from "../type/aut.type";
 
 
 export class AutService {
-    async Login(payload: LoginPayload) {
-        return await agentService.post('/login', payload)
+    static async Login(payload: LoginPayload) {
+        return await agentService.post('/login', {email : payload.email, device_token : ''})
     }
 }
